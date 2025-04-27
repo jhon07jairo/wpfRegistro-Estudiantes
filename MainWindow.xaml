@@ -1,0 +1,66 @@
+﻿<Window x:Class="EstudianteWPF.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:local="clr-namespace:EstudianteWPF"
+       mc:Ignorable="d"
+       Title="Registro de Estudiantes" Height="700" Width="1100">
+    <Grid Background="AntiqueWhite">
+        <TabControl>
+            <!-- Tab Registro -->
+            <TabItem Header="Registro Estudiantes" >
+                <Grid Margin="10" Background="Aquamarine">
+                    <StackPanel>
+                        <StackPanel x:Name="ListaEstudiantes" Background="Aquamarine">
+                            <Label Content="Lista de Estudiantes en Linea" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+                            <DataGrid x:Name="dgEstudiantes" AutoGenerateColumns="True" Height="200" Margin="0,20,0,0"  
+        MouseDoubleClick="dgEstudiantes_MouseDoubleClick"/>
+                        </StackPanel>
+                        <StackPanel x:Name="Botones" Orientation="Horizontal" Margin="0,20,0,0" Background="Aquamarine" >
+                            <Button Name="btnNuevoRegistro" Content="Nuevo Estudiante" Click="NuevoRegistro_Click" Margin="10,10,0,0" Background="GreenYellow"/>
+                            <Button Name="btnAgregarMateria" Content="Agregar Materia" Click="AgregarMateria_Click" Margin="10,10,0,0" Background="Yellow"/>
+                            <Button Name="btnEditarMateria" Content="Ver Materias Inscritas" Click="EditarMateria_Click" Margin="10,10,0,0" Background="YellowGreen"/>
+                            <Button Name="btnEliminarEstudiante" Content="Eliminar Estudiante" Click="EliminarEstudiante_Click" Margin="10,10,0,0" Background="Red"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"  Margin="0,20,0,0" Background="Aquamarine">
+                            <Label Content="Nombre del Estudiante: " HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                            <TextBox x:Name="txtNombre" Width="200" Margin="10,0,0,0" />
+                            <Label Content="Materia: " FontWeight="Bold"/>
+                            <ComboBox x:Name="cbMaterias" Width="200" Margin="10,0,0,0" SelectionChanged="cbMaterias_SelectionChanged" />
+                            <Label Content="Profesor:  " FontWeight="Bold"/>
+                            <ComboBox x:Name="cbProfesores" Width="200" Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="RegMateria" Visibility="Collapsed"  Margin="0,20,0,0" Background="Violet">
+                            <Label Content="Materias del Estudiante: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <DataGrid x:Name="dgMateriasSeleccionadas" AutoGenerateColumns="False" IsReadOnly="True" Height="100" Margin="0,20,0,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Materia" Binding="{Binding Nombre}" />
+                                <DataGridTextColumn Header="Profesor" Binding="{Binding ProfesorNombre}" />
+                                <DataGridTextColumn Header="Creditos" Binding="{Binding Creditos}" />
+                            </DataGrid.Columns>
+                            </DataGrid>
+                            <Button x:Name="btnGuardarMaterias" Content="Guardar Materias de Estudiante" Width="200" Margin="0,10,0,0" Click="GuardarEstudiante_Click" Background="GreenYellow"/>
+                        </StackPanel>
+
+                        <StackPanel x:Name="Edit" Visibility="Collapsed" Margin="0,20,0,0" Background="PaleVioletRed">
+                            <Label Content="Edita las materias del Estudiante: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <DataGrid x:Name="dgEstudianteMaterias" AutoGenerateColumns="True" Height="100" Margin="0,20,0,0" SelectionChanged="dgEstudianteMaterias_SelectionChanged"/>
+                            <Button Content="Editar Materia del Estudiante" Click="btnEditarEstudianteMateria_Click" Width="180" Margin="0,10,0,0" Background="GreenYellow"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab Compartidas -->
+            <TabItem Header="Clases Compartidas">
+                <Grid Margin="10">
+                    <DataGrid x:Name="dgCompartidas" AutoGenerateColumns="True"  Background="Aqua"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label Content="Desarrollado por: Jhon Jairo López Sáez" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="12" FontStyle="Italic"/>
+    </Grid>
+</Window>
